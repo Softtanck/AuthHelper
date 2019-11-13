@@ -9,6 +9,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,6 +34,20 @@ public class QueryAccountInfoController {
         Optional<UserAccount> accountOptional = userAccountRepository.findOne(userAccountExample);
         if (accountOptional.isPresent()) return accountOptional.get();
         else throw new IllegalArgumentException("The user name not exist on the server");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = APIConstant.SCHEMA_V1 + "/queryAllAccounts", method = RequestMethod.GET)
+    public List<UserAccount> queryAllAccounts() {
+        return userAccountRepository.findAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = APIConstant.SCHEMA_V1 + "/updateAccount", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    public BooleanResult updateAccount(@RequestBody UserAccount userAccount) {
+        userAccount.setLastLoginTime(new Date());
+        userAccountRepository.save(userAccount);
+        return new BooleanResult(true);
     }
 
     @ResponseBody

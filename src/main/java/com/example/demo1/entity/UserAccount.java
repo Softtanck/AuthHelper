@@ -1,5 +1,8 @@
 package com.example.demo1.entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.mapping.PrimaryKey;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,7 +13,7 @@ import java.util.Date;
 @Table(name = "user_account")
 public class UserAccount {
 
-    @Id
+//    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -30,6 +33,18 @@ public class UserAccount {
     private boolean isExpired;
     //最后一次登录时间
     private Date lastLoginTime;
+    //当前账号是否在线
+    private boolean isOnline;
+    //游戏中的名字
+    private String gameName;
+    //游戏中的账号
+    @Id
+    @Column(name = "game_account", nullable = false)
+    private String gameAccount;
+    //游戏中的密码
+    private String gamePassword;
+    //游戏中车队的名字
+    private String gameTeamName;
 
     public String getCardNumber() {
         return cardNumber;
@@ -103,6 +118,46 @@ public class UserAccount {
         this.lastLoginTime = lastLoginTime;
     }
 
+    public boolean getOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public String getGameAccount() {
+        return gameAccount;
+    }
+
+    public void setGameAccount(String gameAccount) {
+        this.gameAccount = gameAccount;
+    }
+
+    public String getGamePassword() {
+        return gamePassword;
+    }
+
+    public void setGamePassword(String gamePassword) {
+        this.gamePassword = gamePassword;
+    }
+
+    public String getGameTeamName() {
+        return gameTeamName;
+    }
+
+    public void setGameTeamName(String gameTeamName) {
+        this.gameTeamName = gameTeamName;
+    }
+
     @Override
     public String toString() {
         return "UserAccount{" +
@@ -115,6 +170,11 @@ public class UserAccount {
                 ", tieBindNumber=" + tieBindNumber +
                 ", isExpired=" + isExpired +
                 ", lastLoginTime=" + lastLoginTime +
+                ", isOnline=" + isOnline +
+                ", gameName='" + gameName + '\'' +
+                ", gameAccount='" + gameAccount + '\'' +
+                ", gamePassword='" + gamePassword + '\'' +
+                ", gameTeamName='" + gameTeamName + '\'' +
                 '}';
     }
 }
