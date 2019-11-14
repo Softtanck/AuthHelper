@@ -1,8 +1,5 @@
 package com.example.demo1.entity;
 
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.mapping.PrimaryKey;
-
 import javax.persistence.*;
 import java.util.Date;
 
