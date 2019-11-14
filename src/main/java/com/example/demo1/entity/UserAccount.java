@@ -46,6 +46,9 @@ public class UserAccount {
     //游戏中车队的名字
     private String gameTeamName;
 
+    //该游戏账号是否被封停
+    private boolean gameAccountIsBlocked;
+
     public String getCardNumber() {
         return cardNumber;
     }
@@ -158,6 +161,18 @@ public class UserAccount {
         this.gameTeamName = gameTeamName;
     }
 
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public boolean isGameAccountIsBlocked() {
+        return gameAccountIsBlocked;
+    }
+
+    public void setGameAccountIsBlocked(boolean gameAccountIsBlocked) {
+        this.gameAccountIsBlocked = gameAccountIsBlocked;
+    }
+
     @Override
     public String toString() {
         return "UserAccount{" +
@@ -175,6 +190,7 @@ public class UserAccount {
                 ", gameAccount='" + gameAccount + '\'' +
                 ", gamePassword='" + gamePassword + '\'' +
                 ", gameTeamName='" + gameTeamName + '\'' +
+                ", gameAccountIsBlocked=" + gameAccountIsBlocked +
                 '}';
     }
 }
